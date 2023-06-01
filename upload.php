@@ -86,7 +86,7 @@ function cwUpload($field_name = '', $target_folder = '', $file_name = '', $thumb
             }
 
         }
-
+        print $fileName. ' uploaded successfully!<br>';
         return $fileName;
     }
     else
@@ -98,16 +98,16 @@ function cwUpload($field_name = '', $target_folder = '', $file_name = '', $thumb
 if(!empty($_FILES['file']['name'])){
     $testGD = get_extension_funcs("gd"); // Grab function list 
     if (!$testGD){ echo "GD not even installed."; exit; }
-    echo"<pre>".print_r($testGD,true)."</pre>";
+    //echo"<pre>".print_r($testGD,true)."</pre>";
 
     //call thumbnail creation function and store thumbnail name
-    print $upload_img = cwUpload('file','images/uploads/','',TRUE,'images/uploads/thumbnails/','200','200');
+    $upload_img = cwUpload('file','images/uploads/','',TRUE,'images/uploads/thumbnails/','200','200');
     
     //full path of the thumbnail image
     $thumb_src = 'images/uploads/thumbnails/'.$upload_img;
     
     //set success and error messages
-    $message = $upload_img?"<span style='color:#008000;'>Image thumbnail have been created successfully.</span>":"<span style='color:#F00000;'>Some error occurred, please try again.</span>";
+    print $message = $upload_img?"<span style='color:#008000;'>Image thumbnail(s) created successfully.</span>":"<span style='color:#F00000;'>Some error occurred, please try again.</span>";
     
 }else{
     
